@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import logo from '../../logo.svg';
 import Button from '../../components/Button';
+import List from '../../components/List';
 
 export default function Page2({onRouteChange}) {
   const [number, setNumber] = useState(1);
   const [dark, setDark] = useState(false);
 
-  const getItems = () => {
-    return [number, number+ 1, number + 2]
-  }
+  /* getItems is being re-created every time we render Page2 component
+  so getItems in List's useEffect is changed and trigger functions inside it too. */
+  const getItems = useCallback((incrementer) => {
+    return [number + incrementer, number + incrementer + 1, number + incrementer + 2]
+  }, [number]);
 
   const theme = {
-    backgroundColor: dark ? '#333' : '#FFF',
-    color: dark ? '#FFF' : '#333',
+    backgroundColor: dark ? '#333' : '#fff',
+    color: dark ? '#fff' : '#333',
   }
 
   return (
@@ -28,11 +31,12 @@ export default function Page2({onRouteChange}) {
           <Button onClick={() => onRouteChange('page3')} children={'Page 3'} />
         </div>
       </nav>
-      <main>
+      <main className="py-2" style={theme}>
         <div className="flex justify-center gap-x-2 my-4 bg-black p-2">
-          <input className="p-2" type="number" value={number} onChange={e => setNumber(parseInt(e.target.value))} />
-          <Button onClick={() => setDark(prevDark => !prevDark)}  children={'Focus'} />
+          <input className="p-2 text-black" type="number" value={number} onChange={e => setNumber(parseInt(e.target.value))} />
+          <Button onClick={() => setDark(prevDark => !prevDark)}  children={'Toggle'} />
         </div>
+        <List  style={theme} getItems={getItems} />
       </main>
     </div>
   )
