@@ -12,6 +12,7 @@ function App() {
   }
 
   const renderPage = () => {
+    console.log(route)
     switch(route) {
       case 'page1':
         return <Page1 onRouteChange={onRouteChange} />
