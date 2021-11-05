@@ -1,7 +1,7 @@
 import { useState, lazy, Suspense } from 'react';
 import './App.css';
 import './index.css';
-import Page1 from './domain/Page1';
+import Page1 from './domain/Page/Page1';
 import MainFallBack from './components/MainFallBack';
 
 function App() {
@@ -17,14 +17,14 @@ function App() {
       case 'page1':
         return <Page1 onRouteChange={onRouteChange} />
       case 'page2':
-        const Page2 = lazy(() => import('./domain/Page2'));
+        const Page2 = lazy(() => import('./domain/Page/Page2'));
         return (
           <Suspense fallback={<MainFallBack />}>
             <Page2 onRouteChange={onRouteChange} />
           </Suspense>
         )
       case 'page3':
-        const Page3 = lazy(() => import('./domain/Page3'));
+        const Page3 = lazy(() => import('./domain/Page/Page3'));
         return (
           <Suspense fallback={<MainFallBack />}>
             <Page3 onRouteChange={onRouteChange} />
