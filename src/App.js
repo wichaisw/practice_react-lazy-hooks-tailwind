@@ -2,6 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import './App.css';
 import './index.css';
 import Page1 from './domain/Page1';
+import MainFallBack from './components/MainFallBack';
 
 function App() {
   const [ route, setRoute ] = useState('page1');
@@ -17,14 +18,14 @@ function App() {
       case 'page2':
         const Page2 = lazy(() => import('./domain/Page2'));
         return (
-          <Suspense fallback={<div>...Loading</div>}>
+          <Suspense fallback={<MainFallBack />}>
             <Page2 onRouteChange={onRouteChange} />
           </Suspense>
         )
       case 'page3':
         const Page3 = lazy(() => import('./domain/Page3'));
         return (
-          <Suspense fallback={<div>...Loading</div>}>
+          <Suspense fallback={<MainFallBack />}>
             <Page3 onRouteChange={onRouteChange} />
           </Suspense>
         )
