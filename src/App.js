@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import './App.css';
 import './index.css';
 import Page1 from './domain/Page1';
-import Page2 from './domain/Page2';
-import Page3 from './domain/Page3';
 
 function App() {
   const [ route, setRoute ] = useState('page1');
@@ -13,15 +11,23 @@ function App() {
   }
 
   const renderPage = () => {
-    console.log("route", route)
-
     switch(route) {
       case 'page1':
-        return  <Page1 onRouteChange={onRouteChange} />
+        return <Page1 onRouteChange={onRouteChange} />
       case 'page2':
-        return  <Page2 onRouteChange={onRouteChange} />
+        const Page2 = lazy(() => import('./domain/Page2'));
+        return (
+          <Suspense fallback={<div>...Loading</div>}>
+            <Page2 onRouteChange={onRouteChange} />
+          </Suspense>
+        )
       case 'page3':
-        return  <Page3 onRouteChange={onRouteChange} />
+        const Page3 = lazy(() => import('./domain/Page3'));
+        return (
+          <Suspense fallback={<div>...Loading</div>}>
+            <Page3 onRouteChange={onRouteChange} />
+          </Suspense>
+        )
       default:
         return <h2>Not Found</h2>
     }

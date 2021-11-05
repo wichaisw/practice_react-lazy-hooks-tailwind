@@ -14,10 +14,6 @@ const BUTTON_COLOR = {
   disabled: `text-white bg-indigo-600 opacity-50 cursor-not-allowed`,
 };
 
-const log = (a,b) => {
-  return {...{a,b}}
-}
-
 export default function Button(props) {
   const {
     className = ``,
