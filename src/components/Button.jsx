@@ -14,20 +14,26 @@ const BUTTON_COLOR = {
   disabled: `text-white bg-indigo-600 opacity-50 cursor-not-allowed`,
 };
 
+const log = (a,b) => {
+  return {...{a,b}}
+}
 
 export default function Button(props) {
   const {
     className = ``,
     children,
     use = `primary`,
-    size = `xs`,
+    size = `md`,
     type = `button`,
     onClick = () =>{},
   } = props;
+  
 
   return (
     <button
-      {...{onClick, type}}
+      // {...{onClick, type}}
+      onClick={onClick}
+      type={type}
       className={classNames(
         `inline-flex items-center border border-transparent font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 justify-center`,
         BUTTON_SIZE[size],

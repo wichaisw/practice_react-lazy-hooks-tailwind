@@ -10,9 +10,9 @@ export default function Page2({onRouteChange}) {
         <h1 className="App-title">Page 2</h1>
       </header>
       <div className="flex justify-center gap-x-4 m-2">
-        <Button onClick={() => onRouteChange('page1')}>Page 1</Button>
-        <Button onClick={() => onRouteChange('page2')} use={'disabled'} >Page 2</Button>
-        <Button onClick={() => onRouteChange('page3')}>Page 3</Button>
+        <Button onClick={() => onRouteChange('page1')} children={'Page 1'} />
+        <Button onClick={() => onRouteChange('page2')} use={'disabled'} children={'Page 2'} />
+        <Button onClick={() => onRouteChange('page3')} children={'Page 3'} />
       </div>
     </div>
   )
