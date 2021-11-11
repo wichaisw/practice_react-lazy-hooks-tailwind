@@ -9,6 +9,11 @@
 1. Show how many times has a component been rendered
 2. Reference an element inside HTML.
 3. Get previous value of state vis useEffect
+
+## forwardingRef
+* Parent attaches its ref to child. parent will be able to access child DOM element with the ref.current
+* This also helps the child to read and modify the element from any location where it is used.
+
 ## useMemo()
 * Returns a memoized value.
 * use case: if there is an expensive function, we might want to run it only when any arguments is changed (which change result in the process), useMemo can be used to remember the returned value and make the function run again only when arguments are changed.

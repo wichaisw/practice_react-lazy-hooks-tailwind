@@ -7,13 +7,15 @@ export default function Page1({ onRouteChange }) {
   const inputRef = useRef();
   const prevName = useRef();
 
+  const page1Btn = useRef();
+
   useEffect(() => {
     prevName.current = name;
   }, [name])
 
 
   const focus = () => {
-    console.log(inputRef.current);
+    console.log('page1btn ref', page1Btn.current.attributes);
     inputRef.current.focus();
   }
 
@@ -24,8 +26,8 @@ export default function Page1({ onRouteChange }) {
         <h1 className="App-title">Page 1: useRef</h1>
       </header>
       <nav className="flex justify-center gap-x-4 m-2">
-        <Button onClick={() => onRouteChange('page1')} use={'disabled'} children={'Page 1'} />
-        <Button onClick={() => onRouteChange('page2')} children={'Page 2'} />
+        <Button onClick={() => onRouteChange('page1')} use={'disabled'} key="dog" children={'Page 1'} ref={page1Btn} />
+        <Button onClick={() => onRouteChange('page2')} children={'Page 2'} key="monkey" />
         <Button onClick={() => onRouteChange('page3')} children={'Page 3'} />
       </nav>
       <main>

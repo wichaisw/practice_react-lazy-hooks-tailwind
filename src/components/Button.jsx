@@ -14,7 +14,7 @@ const BUTTON_COLOR = {
   disabled: `text-white bg-indigo-600 opacity-50 cursor-not-allowed`,
 };
 
-export default function Button(props) {
+const Button = React.forwardRef((props, ref) => {
   const {
     className = ``,
     children,
@@ -24,11 +24,11 @@ export default function Button(props) {
     onClick = () =>{},
   } = props;
   
-
   return (
     <button
       // {...{onClick, type}}
       onClick={onClick}
+      ref={ref}
       type={type}
       className={classNames(
         `inline-flex items-center border border-transparent font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 justify-center`,
@@ -39,4 +39,6 @@ export default function Button(props) {
       {children}
     </button>
   )
-}
+});
+
+export default Button;
